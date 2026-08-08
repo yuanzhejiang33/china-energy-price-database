@@ -40,6 +40,8 @@ jobs:
         with:
           node-version: 22
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - run: corepack enable
       - run: pnpm install --no-frozen-lockfile
       - name: Build static site
