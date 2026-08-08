@@ -26,7 +26,7 @@ jobs:
         with:
           enablement: true
       - run: corepack enable
-      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm install --no-frozen-lockfile --ignore-scripts
       - name: Build static site
         run: pnpm build
         env:
