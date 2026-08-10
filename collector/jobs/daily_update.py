@@ -51,7 +51,10 @@ def update_static_data(rows: list[Observation]) -> None:
         merged[(str(public_row["seriesCode"]), str(public_row["dataDate"]))] = public_row
     observations = sorted(merged.values(), key=lambda row: (str(row["dataDate"]), str(row["seriesCode"])), reverse=True)
     UPDATES_PATH.parent.mkdir(parents=True, exist_ok=True)
-    UPDATES_PATH.write_text(json.dumps({"observations": observations}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    UPDATES_PATH.write_text(
+        json.dumps({"checkedAt": fetched_at, "observations": observations}, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
 
 
 def upsert_supabase(rows: list[Observation]) -> None:
@@ -83,53 +86,7 @@ def upsert_supabase(rows: list[Observation]) -> None:
 
 
 if __name__ == "__main__":
-    latest_r…4331 tokens truncated…
-
-  if (combined.includes("no such table") || combined.includes('from "notes"')) {
-    return "The notes table is unavailable. Generate the migration locally with `npm run db:generate`, then deploy so the platform can apply the generated SQL to the real D1 database.";
-  }
-
-  return message;
-}
-
-export async function GET() {
-  try {
-    const db = getDb();
-    const rows = await db
-      .select()
-      .from(notes)
-      .orderBy(desc(notes.createdAt), desc(notes.id))
-      .limit(20);
-
-    return Response.json({ notes: rows });
-  } catch (error) {
-    return Response.json(
-      { error: toRouteErrorMessage(error) },
-      { status: 500 }
-    );
-  }
-}
-
-export async function POST(request: Request) {
-  try {
-    const payload = (await request.json()) as {
-      title?: string;
-      content?: string;
-    };
-    const title = payload.title?.trim() ?? "";
-    const content = payload.content?.trim() ?? "";
-
-    if (!title) {
-      return Response.json({ error: "title is required" }, { status: 400 });
-    }
-
-    const db = getDb();
-    const [note] = await db.insert(notes).values({ title, content }).returning();
-    return Response.json({ note }, { status: 201 });
-  } catch (error) {
-    return Response.json(
-      { error: toRouteErrorMessage(error) },
-      { status: 500 }
-    );
-  }
-}
+    latest_rows = [lng.latest(), *fuel.latest()]
+    update_static_data(latest_rows)
+    upsert_supabase(latest_rows)
+    print("static price data updated")
