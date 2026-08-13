@@ -27,6 +27,8 @@ jobs:
           python-version: "3.12"
       - name: Fetch official prices
         run: python collector/jobs/daily_update.py
+      - name: Validate complete fuel releases
+        run: python -m unittest tests.test_fuel_release
       - name: Commit updated static data
         run: |
           if ! git diff --quiet -- public/data/updates.json; then
