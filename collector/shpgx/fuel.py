@@ -10,9 +10,12 @@ SERIES = {"petrol": "GASOLINE_WHOLESALE_NATIONAL", "diesel": "DIESEL_WHOLESALE_N
 
 def latest() -> list[Observation]:
     data, raw = post_json(LATEST_PATH)
+    # This endpoint is one combined petrol/diesel announcement. DATA_* can
+    # describe different price attribution dates, not separate release dates.
+    release_date = max(data["DATA_petrol"], data["DATA_diesel"])
     return [
-        observation(SERIES["petrol"], data["DATA_petrol"], data["BASEPRICE_petrol"], LATEST_PATH, raw),
-        observation(SERIES["diesel"], data["DATA_diesel"], data["BASEPRICE_diesel"], LATEST_PATH, raw),
+        observation(SERIES["petrol"], release_date, data["BASEPRICE_petrol"], LATEST_PATH, raw, price_date=data["DATA_petrol"]),
+        observation(SERIES["diesel"], release_date, data["BASEPRICE_diesel"], LATEST_PATH, raw, price_date=data["DATA_diesel"]),
     ]
 
 
