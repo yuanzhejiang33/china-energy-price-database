@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-22 23:45",
+  "checkedAt": "2026-10-23 16:10",
   "observations": [
     {
       "seriesCode": "LNG_FACTORY_NATIONAL",
@@ -9,7 +9,7 @@
       "unit": "元/吨",
       "sourceName": "上海石油天然气交易中心",
       "sourceUrl": "https://www.shpgx.com/marketzhishu/list/3/22",
-      "fetchedAt": "2026-10-22 23:45"
+      "fetchedAt": "2026-10-23 16:10"
     },
     {
       "seriesCode": "LNG_FACTORY_NATIONAL",
@@ -20,6 +20,26 @@
       "sourceName": "上海石油天然气交易中心",
       "sourceUrl": "https://www.shpgx.com/marketzhishu/list/3/22",
       "fetchedAt": "2026-10-22 16:13"
+    },
+    {
+      "seriesCode": "GASOLINE_WHOLESALE_NATIONAL",
+      "dataDate": "2026-10-21",
+      "priceDate": "2026-10-21",
+      "value": 10279,
+      "unit": "元/吨",
+      "sourceName": "上海石油天然气交易中心",
+      "sourceUrl": "https://www.shpgx.com/marketzhishu/list2",
+      "fetchedAt": "2026-10-23 16:10"
+    },
+    {
+      "seriesCode": "DIESEL_WHOLESALE_NATIONAL",
+      "dataDate": "2026-10-21",
+      "priceDate": "2026-10-21",
+      "value": 9367,
+      "unit": "元/吨",
+      "sourceName": "上海石油天然气交易中心",
+      "sourceUrl": "https://www.shpgx.com/marketzhishu/list2",
+      "fetchedAt": "2026-10-23 16:10"
     },
     {
       "seriesCode": "LNG_FACTORY_NATIONAL",
